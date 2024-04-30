@@ -188,7 +188,7 @@ module.exports.update = async (req, res) => {
       { _id: req.user._id },
       { Name: docName, Charge: Charge}
     );
-    await 
+    await Slot.updateMany({doctorid:req.user._id},{DoctorName:docName,Charge:Charge}); 
     const doc = await experts.findById(req.user._id)
     const slotter = await Slot.find({doctorid:doc._id}).populate('Userid');
     res.status(200).json({doc:doc, slotter:slotter})
