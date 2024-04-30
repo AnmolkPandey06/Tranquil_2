@@ -58,7 +58,7 @@ router.get('/', catchAsync(async (req, res, next) => {
 //     res.render('feed/newblog',{navactive:navactive});
 // })
 
-router.post('/newfeed',uploads.single('image'),catchAsync(async(req,res)=>{
+router.post('/newfeed',protect,uploads.single('image'),catchAsync(async(req,res)=>{
     try {
         console.log(req.body);
         console.log(req.file);

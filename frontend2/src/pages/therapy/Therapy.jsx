@@ -19,14 +19,44 @@ const Therapy = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+
+  function isAtLeastTwoDaysAhead(dateTimeObj) {
+    // Parse date and time strings
+    const { date, time } = dateTimeObj;
+    const dateTimeString = `${date}T${time}`;
+    const dateTime = new Date(dateTimeString);
+  
+    // Get current date and time
+    const now = new Date();
+  
+    // Calculate the difference in milliseconds between the provided date and the current date
+    const differenceInMilliseconds = dateTime.getTime() - now.getTime();
+  
+    // Convert milliseconds to days
+    const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
+  
+    // Check if the difference is at least 2 days
+    return differenceInDays >= 2;
+  }
+
   const handleSubmit = async(id) => {
     
     // Here you can submit the formData to your backend or perform any other action
     console.log(id,formData);
+    if(!isAtLeastTwoDaysAhead(formData)){
+      toast.error("Schedule should be atleast 2 days in future", {
+        duration: 4000,
+        position: "top-right",
+      });
+      return;
+    }
+    
     try {
       //console.log(user);
+      
       if (user) {
         // Assuming you are using React Router for routing
+        
         const response = await axios.post(
           `http://localhost:3000/expert/slotmaker/${id}`,
           formData,{
@@ -40,8 +70,7 @@ const Therapy = () => {
           duration: 4000,
           position: "top-right",
         });
-        //console.log(response);
-        //fetchPostDetails();
+        console.log(response);
         setLoading(false);
       } else {
         toast.error("First Login or Signup to access", {

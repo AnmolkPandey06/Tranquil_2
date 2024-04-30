@@ -186,6 +186,9 @@ module.exports.buyproduct = async (req, res) => {
             amount: amount
         })
 
+
+        console.log(bought);
+
         const use = await user.findById(bought.userid)
         await bought.save();
         await cart.deleteMany({ userid: req.user.id });

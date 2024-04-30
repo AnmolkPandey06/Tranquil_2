@@ -9,7 +9,7 @@ const methodOveride = require('method-override');
 
 const cors=require('cors');
 
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 //env
 const {config}=require('dotenv');
 config();
@@ -31,6 +31,8 @@ app.use(methodOveride('_method'));
 const flash=require("connect-flash");
 const cookie=require('cookie-parser');
 const User = require('./Models/user');
+
+app.use(cookie());
 
 
 

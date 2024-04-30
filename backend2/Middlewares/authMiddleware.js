@@ -8,6 +8,9 @@ const protect = asyncHandler(async (req, res, next) => {
   let token;
 
     try {
+      // const token=req.cookies.jwttranquil;
+     
+      console.log("hiiiiii");
       token = req.headers.authorization;
      //decodes token id
       console.log(token);
@@ -17,6 +20,7 @@ const protect = asyncHandler(async (req, res, next) => {
       next();
     } catch (error) {
       res.status(401);
+      console.log(error);
       throw new Error("Not authorized, token failed");
     }
 
@@ -31,14 +35,17 @@ const expertprotect = asyncHandler(async (req, res, next) => {
   let token;
 
     try {
+      // const token=req.cookies.jwt-tranquil;
       token = req.headers.authorization;
      //decodes token id
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
       req.user = await Expert.findById(decoded.id).select("-hash");
       console.log(req.user)
       console.log("Expert protect")
       next();
     } catch (error) {
+      console.log(error);
       res.status(401);
       throw new Error("Not authorized, token failed");
     }
@@ -56,6 +63,7 @@ const adminprotect = asyncHandler(async (req, res, next) => {
 
     try {
       token = req.headers.authorization;
+      // const token=req.cookies.jwt-tranquil;
      //decodes token id
       console.log(token);
       const decoded = jwt.verify(token, process.env.JWT_SECRET);

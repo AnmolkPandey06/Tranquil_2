@@ -152,6 +152,9 @@ module.exports.slotmaker = async (req, res) => {
     doctor = await experts.findById(req.params.id);
     const slotter = new Slot({
       Time: time,
+      DoctorName:doctor.Name,
+      UserName:req.user.username,
+      Charge:doctor.Charge,
       Date: date,
       Userid: req.user,
       doctorid: doctor,
@@ -169,24 +172,34 @@ module.exports.slotmaker = async (req, res) => {
   }
 };
 
-module.exports.updateprofile = async (req, res) => {
+module.exports.update = async (req, res) => {
+ 
+  
   try {
-    if (req.params.doctorid) {
-      console.log(req.body);
-      if (req.body.name && req.body.Charge && req.body.pfp) {
-        await experts.updateOne(
-          { _id: req.params.doctorid },
-          { Name: req.body.name, Charge: req.body.Charge, pfp: req.body.pfp }
-        );
-      }
-      res.redirect("/expert/expertprofile");
-    } else {
-      req.flash("error", "You need to first login");
-      return res.redirect("/expert/expertlogin");
+    docName=req.user.Name;
+    Charge=req.user.Charge;
+    if(req.body.Name){
+      docName=req.body.Name;
     }
-  } catch (error) {
-    res.status(500).json({ message: "Error", error: error });
-  }
+    if(req.body.Charge){
+      Charge=req.body.Charge;
+    }
+    await experts.updateOne(
+      { _id: req.user._id },
+      { Name: docName, Charge: Charge}
+    );
+    await 
+    const doc = await experts.findById(req.user._id)
+    const slotter = await Slot.find({doctorid:doc._id}).populate('Userid');
+    res.status(200).json({doc:doc, slotter:slotter})
+}
+
+catch (error) {
+console.log(error);
+res.status(500).json({message:"Error",error:error})
+}
+
+
 };
 
 module.exports.getexpertprofile=async (req,res)=>{
@@ -211,7 +224,11 @@ module.exports.getexpertprofile=async (req,res)=>{
 
 module.exports.acceptslot = async (req, res) => {
   try {
-    await Slot.updateOne({ _id: req.params.sid }, { status: "accept" });
+    const {link}=req.body;
+    console.log(link);
+
+    console.log("anmol acceptslot");
+    await Slot.updateOne({ _id: req.params.sid }, { status: "accept", Link:link});
     const slotter = await Slot.find({doctorid:req.user._id}).populate('Userid');
     console.log(slotter);
     res.status(200).json({slotter:slotter})

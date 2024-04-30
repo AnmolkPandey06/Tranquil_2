@@ -37,7 +37,7 @@ router.post('/adminlogin', catchAsync(
                 _id: admin._id,
                 name: admin.name,
                 email: admin.email,
-                token: generateToken(admin._id),
+                token: generateToken(admin._id,res),
             }).status(201);
         } else {
             res.status(401);
