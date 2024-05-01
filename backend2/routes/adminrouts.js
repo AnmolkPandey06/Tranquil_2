@@ -46,6 +46,7 @@ router.post('/adminlogin', catchAsync(
     }
 ));
 
+router.get('/expertinfo', catchAsync(control.expertinfo));
 
 
 router.get('/adminprofile/:id', catchAsync(control.getadminprofile));

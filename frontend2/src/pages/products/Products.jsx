@@ -21,7 +21,7 @@ const Products = () => {
   useEffect(() => {
     if(user){
       async function getProductData() {
-        await dispatch(fetchProductData());
+        await dispatch(fetchProductData(user.token));
         setLoading(false);
       }
       getProductData();

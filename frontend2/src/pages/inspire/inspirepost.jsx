@@ -355,7 +355,7 @@ const Inspirepost = (props) => {
                         <span className="rounded-full overflow-hidden">
                           <img
                             className="rounded-full"
-                            src={comment.authorpfp||comment.author.pfp}
+                            src={comment.author.pfp||comment.author.pfp}
                             alt="user"
                             width="40"
                           />

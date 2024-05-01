@@ -60,6 +60,7 @@ module.exports.isloggedin = async (req, res, next) => {
 module.exports.getproducts = async (req, res, next) => {
     try {
         const products = await Product.find({});
+        console.log(products);
         return res.send({ success: true, products: products })
     } catch (e) {
         console.log(e)

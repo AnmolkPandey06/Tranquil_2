@@ -18,10 +18,14 @@ const initialState = {
   totalPrice: 0,
 };
 
-export const fetchProductData = () => async (dispatch) => {
+export const fetchProductData = (token) => async (dispatch) => {
     try {
       const response = await Axios.get(
         "http://localhost:3000/products/getproducts"
+        ,
+        {headers: { 
+            Authorization: token
+         }},
       );
       console.log(response.data);
       dispatch(setProductData(response.data.products));
