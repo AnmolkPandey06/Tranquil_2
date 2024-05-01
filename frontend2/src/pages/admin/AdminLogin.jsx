@@ -29,21 +29,34 @@ const AdminLogin = () => {
        //  formData.append("password", password);
              
      const data = await axios.post("http://localhost:3000/admin/adminlogin",{email:email,password:password});
+     console.log(data);
+     if(data.data.message){
+      toast.error("Wrong Credential",{
+        duration: 4000,
+        position: 'top-right',
+      });
+      setLoginloading(false)
+     }
      console.log(data); 
      dispatch(setLoginAdmin(data.data));
      toast.success('Admin Login. Welcome to tranquil',{
        duration: 4000,
        position: 'top-right',
-     });
+     }
+
+
+      );
      Navigate('/adminside');
      setLoginloading(false);
    } catch (error) {
      console.log(error);
-     toast.error(error.msg,{
+     toast.error(error.message,{
       duration: 4000,
       position: 'top-right',
     });
+
    }
+   setLoginloading(false);
  };
  return (
    

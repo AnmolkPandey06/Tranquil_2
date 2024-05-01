@@ -30,6 +30,11 @@ router.post('/adminlogin', catchAsync(
         console.log('admin : ', req.body);
         const admin = await administer.findOne({ email: email });
         console.log(admin);
+        if(!admin){
+            console.log("check")
+            res.status(401);
+            
+        }
 
         if (admin && (await bcrypt.compare(password, admin.hash))) {
             console.log("Log In Successfull");
@@ -41,7 +46,7 @@ router.post('/adminlogin', catchAsync(
             }).status(201);
         } else {
             res.status(401);
-            throw new Error("Invalid Email or Password");
+            throw new Error('Invalid Email or Password');
         }
     }
 ));

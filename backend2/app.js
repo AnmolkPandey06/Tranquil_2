@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const morgan = require('morgan');
-
+// const swaggerFile = require('.swagger-output.json');
+const swaggerUi = require('swagger-ui-express');
 
 //method overide for patch and put into post
 const methodOveride = require('method-override');
@@ -35,7 +36,7 @@ const User = require('./Models/user');
 app.use(cookie());
 
 
-
+const swaggerFile = require('./swagger-output.json')
 // const session=require("express-session");
 // sessionconfig={
 //     secret:'thisismysecret',
@@ -137,8 +138,8 @@ const { notFound, errorHandler } = require('./Middlewares/errorMiddleware')
 
 
 
-
-
+// Swagger :
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
 
