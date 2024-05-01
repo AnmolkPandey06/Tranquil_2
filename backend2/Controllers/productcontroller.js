@@ -57,7 +57,7 @@ module.exports.isloggedin = async (req, res, next) => {
 
 }
 
-module.exports.getproducts = async (req, res, next) => {
+module.exports.getproducts = async (req, res) => {
     try {
         const products = await Product.find({});
         console.log(products);

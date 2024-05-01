@@ -7,7 +7,7 @@ const generateToken=require('../Middlewares/generateToken')
 const ExpressError = require('../utils/ExpressError')
 // wrapper err function
 const catchAsync = require('../utils/catchAsync');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const multer = require('multer');
 const uploads = multer({ dest: 'routes/uploads' });

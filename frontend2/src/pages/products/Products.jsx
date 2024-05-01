@@ -40,7 +40,13 @@ const Products = () => {
     try {
       const response = await axios.post(
         "http://localhost:3000/products/addtocart",
-        { userId:user._id , productId: id }
+
+        { userId:user._id , productId: id },
+        {
+          headers: {
+              authorization: user.token
+          }
+      }
       );
       if (response.status == 200) {
         // console.log(response.data);
@@ -48,7 +54,7 @@ const Products = () => {
           autoClose: 2000 
         });
         await dispatch(addToCart(id));
-        await dispatch(fetchCartData(user._id));
+        await dispatch(fetchCartData(user._id,user.token));
       }
     } catch (e) {
       console.log(e);

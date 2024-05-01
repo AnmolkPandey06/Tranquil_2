@@ -6,7 +6,7 @@ const administer = require('../Models/admin');
 const ExpressError = require('../utils/ExpressError')
 // wrapper err function
 const catchAsync = require('../utils/catchAsync');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const generateToken = require('../Middlewares/generateToken');
 
 //middleware

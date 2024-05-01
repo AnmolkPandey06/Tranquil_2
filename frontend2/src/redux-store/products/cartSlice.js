@@ -34,11 +34,15 @@ export const fetchProductData = (token) => async (dispatch) => {
     }
 };
 
-export const fetchCartData = (userid) => async (dispatch) => {
+export const fetchCartData = (userid,token) => async (dispatch) => {
   // const user = useSelector((state) => state.auth.user);
   try { 
-    console.log(userid);
-    const response = await axios.post("http://localhost:3000/products/getcart",{userId:userid})
+    console.log(userid,token);
+    const response = await axios.post("http://localhost:3000/products/getcart",{userId:userid},{
+      headers: {
+          authorization: token
+      }
+  })
     console.log(response.data)
     dispatch(setCartDataAction(response.data.products))
   } catch(e){

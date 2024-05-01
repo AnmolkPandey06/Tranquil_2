@@ -9,8 +9,13 @@ WORKDIR /app
 # If the package.json and package-lock.json files haven’t changed, Docker will use the cached dependencies
 COPY package*.json ./
 
+COPY .env ./
+
 # install dependencies
 RUN npm install
+
+
+
 
 # copy the rest of the files to the working directory
 COPY . .
