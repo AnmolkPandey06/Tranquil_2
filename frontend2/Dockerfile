@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # set the working directory to /app
-WORKDIR /app
+WORKDIR /frontend2
 
 # copy package.json and package-lock.json to the working directory
 # This is done before copying the rest of the files to take advantage of Docker’s cache
