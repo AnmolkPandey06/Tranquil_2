@@ -33,7 +33,7 @@ const AdminProfile = () => {
         if (admin) {
           // Assuming you are using React Router for routing
           const response = await axios.get(
-            `/api/admin/adminprofile/${admin._id}`,
+            `${import.meta.env.VITE_BASE_URL}/admin/adminprofile/${admin._id}`,
             {
               headers: {
                 Authorization: admin.token,
@@ -72,7 +72,7 @@ const AdminProfile = () => {
       console.log("Entered accept Expet");
       console.log(id);
       const data = await axios.get(
-        `/api/admin/adminexpertaccept/${id}`
+        `${import.meta.env.VITE_BASE_URL}/admin/adminexpertaccept/${id}`
       );
       if (data.status == 200) {
         setExpert(data.data);
@@ -104,7 +104,7 @@ const AdminProfile = () => {
     setLoadingExpert(true);
     try {
       const data = await axios.get(
-        `/api/admin/adminexpertdelete/${id}`
+        `${import.meta.env.VITE_BASE_URL}/admin/adminexpertdelete/${id}`
       );
       if (data.status == 200) {
         setExpert(data.data);
@@ -137,7 +137,7 @@ const AdminProfile = () => {
     setLoadingFeeds(true);
     try {
       const data = await axios.get(
-        `/api/admin/adminfeedok/${id}`
+        `${import.meta.env.VITE_BASE_URL}/admin/adminfeedok/${id}`
       );
       if (data.status == 200) {
         setFeeds(data.data);
@@ -168,7 +168,7 @@ const AdminProfile = () => {
   const deletePost = async (id) => {
     setLoadingFeeds(true);
     try {
-      const data = await axios.get(`/api/admin/adminfeeddelete/${id}`
+      const data = await axios.get(`${import.meta.env.VITE_BASE_URL}/admin/adminfeeddelete/${id}`
       );
       if (data.status == 200) {
         setFeeds(data.data);

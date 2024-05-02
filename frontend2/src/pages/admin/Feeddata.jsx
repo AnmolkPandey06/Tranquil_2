@@ -73,7 +73,7 @@ const  Feeddata = ({dashboarddata}) => {
       setLoading(true);
       try {
         if(dashboarddata.length===0){
-            const {data}=await axios.get('/api/feed');
+            const {data}=await axios.get(`${import.meta.env.VITE_BASE_URL}/feed`);
             console.log("anmol",data);
             setData(data.data);
         }

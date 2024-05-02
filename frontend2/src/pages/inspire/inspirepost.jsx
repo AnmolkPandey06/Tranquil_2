@@ -37,7 +37,7 @@ const Inspirepost = (props) => {
         if (user) {
           // Assuming you are using React Router for routing
           const response = await axios.post(
-            `/api/feed/comment/${routeParams.id}`,
+            `${import.meta.env.VITE_BASE_URL}/feed/comment/${routeParams.id}`,
             {comment:comment},{
               headers: {
                 authorization: user.token,
@@ -85,7 +85,7 @@ const Inspirepost = (props) => {
       if (user) {
         // Assuming you are using React Router for routing
         const response = await axios.get(
-          `/api/feed/${routeParams.id}`,
+          `${import.meta.env.VITE_BASE_URL}/feed/${routeParams.id}`,
           {
             headers: {
               authorization: user.token,
@@ -128,7 +128,7 @@ const Inspirepost = (props) => {
       if (user) {
         // Assuming you are using React Router for routing
         const response = await axios.get(
-          `/api/feed/like/${routeParams.id}`,
+          `${import.meta.env.VITE_BASE_URL}/feed/like/${routeParams.id}`,
           {
             headers: {
               Authorization: user.token,
@@ -164,7 +164,7 @@ const Inspirepost = (props) => {
       if (user) {
         // Assuming you are using React Router for routing
         const response = await axios.get(
-          `/api/feed/report/${routeParams.id}`,
+          `${import.meta.env.VITE_BASE_URL}/feed/report/${routeParams.id}`,
           {
             headers: {
               Authorization: user.token,

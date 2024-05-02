@@ -51,7 +51,7 @@ const PostForm = () => {
     try {
       console.log(formData);
 
-      const response = await axios.post("/api/feed/newfeedreact", formData,{
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/feed/newfeedreact`, formData,{
             headers: {
                 authorization: user.token
             }

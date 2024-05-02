@@ -21,7 +21,7 @@ const initialState = {
 export const fetchProductData = (token) => async (dispatch) => {
     try {
       const response = await Axios.get(
-        "/api/products/getproducts"
+        `${import.meta.env.VITE_BASE_URL}/products/getproducts`
         ,
         {headers: { 
             Authorization: token
@@ -38,7 +38,7 @@ export const fetchCartData = (userid,token) => async (dispatch) => {
   // const user = useSelector((state) => state.auth.user);
   try { 
     console.log(userid,token);
-    const response = await axios.post("/api/products/getcart",{userId:userid},{
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/products/getcart`,{userId:userid},{
       headers: {
           authorization: token
       }

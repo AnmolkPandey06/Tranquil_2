@@ -31,7 +31,7 @@ const Cart = () => {
 
       // try { 
       //   // console.log(userid,token);
-      //   const response = await axios.post("/api/products/getcart",{userId:user._id},{
+      //   const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/products/getcart`,{userId:user._id},{
       //     headers: {
       //         authorization: user.token
       //     }
@@ -49,7 +49,7 @@ const Cart = () => {
   async function removeFromCartHandler(id) {
     try {
       const response = await axios.post(
-        "/api/products/deletefromcart",
+        `${import.meta.env.VITE_BASE_URL}/products/deletefromcart`,
         { userId: user._id, productId: id },
         {
           headers: {
@@ -73,7 +73,7 @@ const Cart = () => {
   async function increaseQuantityHandler(id) {
     try {
       const response = await axios.post(
-        "/api/products/increasequantity",
+        `${import.meta.env.VITE_BASE_URL}/products/increasequantity`,
         { userId: user._id, productId: id },
         {
           headers: {
@@ -96,7 +96,7 @@ const Cart = () => {
   async function decreaseQuantityHandler(id) {
     try {
       const response = await axios.post(
-        "/api/products/decreasequantity",
+        `${import.meta.env.VITE_BASE_URL}/products/decreasequantity`,
         { userId: user._id, productId: id },
         {
           headers: {
@@ -119,7 +119,7 @@ const Cart = () => {
   async function checkoutHandler() {
     try {
       const response = await axios.post(
-        "/api/products/buyproduct",
+        `${import.meta.env.VITE_BASE_URL}/products/buyproduct`,
         { user: user },
         {
           headers: {

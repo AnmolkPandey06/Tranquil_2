@@ -24,7 +24,7 @@ const Login = () => {
         //  formData.append("password", password);
               
         const data = await axios.post(
-          "/api/login",
+          `${import.meta.env.VITE_BASE_URL}/login`,
           { email: email, password: password },
           { withCredentials: true } // Pass the withCredentials option here
         );
