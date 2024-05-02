@@ -6,6 +6,7 @@ const feed = require("../Models/feed");
 const comment = require("../Models/comments");
 const administer = require("../Models/admin");
 const solddetails = require("../Models/solddetails");
+const {redisClient} =  require('../cache/redisio.js')
 
 module.exports.postlogin = async (req, res) => {
   try {
@@ -32,20 +33,42 @@ module.exports.postlogin = async (req, res) => {
   }
 };
 
+
+// Redis COntroller :
 module.exports.getadminprofile = async (req, res) => {
   try {
+    // console.log('admin');
+    // const admini = await administer.findById(req.params.id);
+    // const docs = await doc.find({ pendingstatus: true });
+    // const feeds = await feed.find({}).populate("author");
+    // console.log(feeds);
+    // res.status(200).json({ admini: admini, docs: docs, feeds: feeds });
+    // return;
+
+    redisClient.get("getadminprofile", async (err, cachedData) => {
+      if (err) throw err;
+  
+    if (cachedData) {
+      return res.json(JSON.parse(cachedData));
+    } else {
       console.log('admin');
       const admini = await administer.findById(req.params.id);
       const docs = await doc.find({ pendingstatus: true });
       const feeds = await feed.find({}).populate("author");
       console.log(feeds);
-      res.status(200).json({ admini: admini, docs: docs, feeds: feeds });
-      return;
+    
+      redisClient.setex("getadminprofile", 3600, JSON.stringify({success: true, admini: admini, docs: docs, feeds: feeds}));
+      return res.status(200).send({success: true, admini: admini, docs: docs, feeds: feeds});
+      }
+    })
     } 
      catch (error) {
     res.status(500).json({ message: "Error hii", error:error });
   }
 };
+
+
+
 
 module.exports.getadminproductmanage = async (req, res) => {
   try {

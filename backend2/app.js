@@ -36,6 +36,8 @@ const User = require('./Models/user');
 app.use(cookie());
 
 
+
+
 const swaggerFile = require('./swagger-output.json')
 // const session=require("express-session");
 // sessionconfig={
@@ -108,7 +110,71 @@ db.once("open", () => {
 });
 
 
+// REDIS : //
 
+const redis = require("redis");
+// const client = createClient({
+//   url: process.env.REDIS_URL,
+// });
+// socket: {
+//       host: 'redis-server',
+//       port: 6379,
+//     },
+
+// const redis = require('redis');
+
+
+// const redisClient = redis.createClient({
+//   socket: {
+//     host: 'redis-server',
+//     port: 6379,
+//   },
+// });
+
+// client.on("connect", () =>
+  // console.log(`Redis is connected on port ${process.env.REDIS_PORT}`)
+// );
+// client.on("error", (err) => {+
+//   console.error("Error Connecting to Redis Client:", err);
+// });
+
+// if (process.env.NODE_ENV !== "test") {
+//     (async () => {
+//       // await client.connect();
+//     })();
+  
+//     client.set("visits", 0);
+  
+//     app.get("/visits", async (req, res) => {
+//       try {
+//         const currentVisits = await client.get("visits");
+//         let visits = parseInt(currentVisits) || 0;
+//         visits++;
+//         await client.set("visits", visits);
+//         res.send("Number of visits is: " + visits);
+//       } catch (error) {
+//         console.error("Error getting or setting visit count:", error);
+//         res.status(500).send("Internal Server Error");
+//       }
+//     });
+  
+    // Attach redisClient middleware
+    // app.use(async (req, res, next) => {
+    //   try {
+    //     if (!client) {
+    //       await client.connect();
+    //     }
+    //     req.redisClient = client;
+    //     next();
+    //   } catch (err) {
+    //     console.error("Error connecting to Redis:", err);
+    //     next(err);
+    //   }
+    // });
+
+  // }
+
+/////////////
 
 // // app.use(express.static(__dirname + '/Resources'));
 // app.use(express.static("Resources"));
@@ -182,3 +248,4 @@ const PORT=process.env.PORT|| 3000
 app.listen(PORT, () => {
     console.log('Listening the port 3000 from Tranquil...');
 });
+

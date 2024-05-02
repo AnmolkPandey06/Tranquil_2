@@ -11,6 +11,7 @@ const experts = require("../Models/doctors");
 const tempdoct = require("../Models/temp-doctors");
 const User = require("../Models/temp-doctors");
 const Slot = require("../Models/expertschedule");
+const {redisClient} =  require('../cache/redisio.js')
 
 //Functions :
 
@@ -202,25 +203,46 @@ res.status(500).json({message:"Error",error:error})
 
 };
 
+
+//Redis COntroller :
 module.exports.getexpertprofile=async (req,res)=>{
     
   try {
-          console.log("anmiol");
-          const doc = await experts.findById(req.user._id)
-          const slotter = await Slot.find({doctorid:doc._id}).populate('Userid');
-          console.log(slotter);
+          // console.log("anmiol");
+          // const doc = await experts.findById(req.user._id)
+          // const slotter = await Slot.find({doctorid:doc._id}).populate('Userid');
+          // console.log(slotter);
   
-          res.status(200).json({doc:doc, slotter:slotter})
-      }
+          // res.status(200).json({doc:doc, slotter:slotter})
 
+          redisClient.get("getexpertprofile", async (err, cachedData) => {
+            if (err) throw err;
+          
+          if (cachedData) {
+          return res.json(JSON.parse(cachedData));
+          } else {
+            console.log("anmiol");
+            const doc = await experts.findById(req.user._id)
+            const slotter = await Slot.find({doctorid:doc._id}).populate('Userid');
+            console.log(slotter);
+          
+            redisClient.setex("getexpertprofile", 3600, JSON.stringify({doc:doc, slotter:slotter}));
+            return res.status(200).send({doc:doc, slotter:slotter});
+            
+          
+          }})
+      }
   catch (error) {
       console.log(error);
       res.status(500).json({message:"Error",error:error})
   }
-
-
-  
 }
+
+
+
+
+
+
 
 module.exports.acceptslot = async (req, res) => {
   try {

@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 router=express.Router();
+const redisClient =  require('../cache/redisio.js')
+
 
 // error class
 const ExpressError=require('../utils/ExpressError')
