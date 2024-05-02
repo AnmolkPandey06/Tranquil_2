@@ -39,7 +39,7 @@ const Products = () => {
   async function addToCartHandler(id) {
     try {
       const response = await axios.post(
-        "http://localhost:3000/products/addtocart",
+        "/api/products/addtocart",
 
         { userId:user._id , productId: id },
         {

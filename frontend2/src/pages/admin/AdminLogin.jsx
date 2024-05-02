@@ -28,7 +28,7 @@ const AdminLogin = () => {
        //  formData.append("email", email);
        //  formData.append("password", password);
              
-     const data = await axios.post("http://localhost:3000/admin/adminlogin",{email:email,password:password});
+     const data = await axios.post("/api/admin/adminlogin",{email:email,password:password});
      console.log(data);
      if(data.data.message){
       toast.error("Wrong Credential",{

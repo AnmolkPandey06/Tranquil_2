@@ -37,7 +37,7 @@ const Inspirepost = (props) => {
         if (user) {
           // Assuming you are using React Router for routing
           const response = await axios.post(
-            `http://localhost:3000/feed/comment/${routeParams.id}`,
+            `/api/feed/comment/${routeParams.id}`,
             {comment:comment},{
               headers: {
                 authorization: user.token,
@@ -85,7 +85,7 @@ const Inspirepost = (props) => {
       if (user) {
         // Assuming you are using React Router for routing
         const response = await axios.get(
-          `http://localhost:3000/feed/${routeParams.id}`,
+          `/api/feed/${routeParams.id}`,
           {
             headers: {
               authorization: user.token,
@@ -128,7 +128,7 @@ const Inspirepost = (props) => {
       if (user) {
         // Assuming you are using React Router for routing
         const response = await axios.get(
-          `http://localhost:3000/feed/like/${routeParams.id}`,
+          `/api/feed/like/${routeParams.id}`,
           {
             headers: {
               Authorization: user.token,
@@ -164,7 +164,7 @@ const Inspirepost = (props) => {
       if (user) {
         // Assuming you are using React Router for routing
         const response = await axios.get(
-          `http://localhost:3000/feed/report/${routeParams.id}`,
+          `/api/feed/report/${routeParams.id}`,
           {
             headers: {
               Authorization: user.token,

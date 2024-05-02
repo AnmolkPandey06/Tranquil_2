@@ -73,7 +73,7 @@ const  Feeddata = ({dashboarddata}) => {
       setLoading(true);
       try {
         if(dashboarddata.length===0){
-            const {data}=await axios.get('http://localhost:3000/feed');
+            const {data}=await axios.get('/api/feed');
             console.log("anmol",data);
             setData(data.data);
         }

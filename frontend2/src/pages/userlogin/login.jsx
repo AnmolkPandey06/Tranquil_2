@@ -24,7 +24,7 @@ const Login = () => {
         //  formData.append("password", password);
               
         const data = await axios.post(
-          "http://localhost:3000/login",
+          "/api/login",
           { email: email, password: password },
           { withCredentials: true } // Pass the withCredentials option here
         );

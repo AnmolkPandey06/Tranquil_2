@@ -16,7 +16,7 @@ const Inspire = () => {
     const fetchFeeds = async () => {
      // console.log("inspire",user);
       try {
-        const response = await axios.get("http://localhost:3000/feed");
+        const response = await axios.get("/api/feed");
         console.log(response);
         setFeeds(response.data);
         setLoading(false);

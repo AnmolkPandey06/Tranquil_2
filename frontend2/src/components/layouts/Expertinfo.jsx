@@ -75,7 +75,7 @@ const  Expertinfo = () => {
   const fetchData=async ()=>{
       setLoading(true);
       try {
-            const {data}=await axios.get('http://localhost:3000/admin/expertinfo',
+            const {data}=await axios.get('api/admin/expertinfo',
             {
               headers: {
                 Authorization: admin.token,

@@ -51,7 +51,7 @@ const PostForm = () => {
     try {
       console.log(formData);
 
-      const response = await axios.post("http://localhost:3000/feed/newfeedreact", formData,{
+      const response = await axios.post("/api/feed/newfeedreact", formData,{
             headers: {
                 authorization: user.token
             }

@@ -32,7 +32,7 @@ const UserProfile = () => {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            "http://localhost:3000/userprofile",
+            "/api/userprofile",
             {
               headers: {
                 Authorization: user.token,
@@ -63,7 +63,7 @@ const UserProfile = () => {
       setLoading(true);
       try{
         const response = await axios.post(
-          "http://localhost:3000/userprofile/doctorfilter",
+          "/api/userprofile/doctorfilter",
           
           formData,{
             headers: {

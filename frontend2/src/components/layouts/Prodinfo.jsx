@@ -75,7 +75,7 @@ const  Soldinfo = () => {
   const fetchData=async ()=>{
       setLoading(true);
       try {
-            const {data}=await axios.get('http://localhost:3000/admin/adminproductsmanage',
+            const {data}=await axios.get('/api/admin/adminproductsmanage',
             {
               headers: {
                 Authorization: admin.token,
