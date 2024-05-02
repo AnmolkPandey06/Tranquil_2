@@ -35,7 +35,7 @@ jobs:
           # echo "MONGO_DB_TEST=mongodb+srv://parthirache8:ufPeWVX7HabgpyVh@cluster0.eo9svyz.mongodb.net/test" >> .env
 
       - name: Run test
-        working-directory: ./Backend
+        working-directory: ./backend2
         run: |
           npm test
           if [ $? -ne 0 ]; then
