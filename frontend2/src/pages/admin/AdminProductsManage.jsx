@@ -33,7 +33,7 @@ const AdminProductsManage = () => {
         if (admin) {
 
           const response = await axios.get(
-            `/api/admin/adminproductsmanage/`
+            `${import.meta.env.VITE_BASE_URL}/admin/adminproductsmanage/`
             , {
               headers: {
                 Authorization: admin.token
@@ -68,21 +68,21 @@ const AdminProductsManage = () => {
   const updateProduct = async (id) => {
     console.log(formData);
     console.log(id)
-    //const data = await axios.put(`/api/admin/adminproductupdate/${id}`);
+    //const data = await axios.put(`${import.meta.env.VITE_BASE_URL}/admin/adminproductupdate/${id}`);
     //console.log(data);
   }
 
   const deleteProduct = async (id) => {
     console.log("Entered Update PRoduct")
     console.log(id)
-    const data = await axios.post(`/api/admin/adminproductdelete/${id}`);
+    const data = await axios.post(`${import.meta.env.VITE_BASE_URL}/admin/adminproductdelete/${id}`);
     console.log(data);
   }
 
   const addProduct = async () => {
     console.log("Entered Update PRoduct")
     console.log(id)
-    const data = await axios.post(`/api/admin/adminproductadd`);
+    const data = await axios.post(`${import.meta.env.VITE_BASE_URL}/admin/adminproductadd`);
     console.log(data);
   }
 

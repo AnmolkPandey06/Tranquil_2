@@ -58,7 +58,7 @@ const Therapy = () => {
         // Assuming you are using React Router for routing
         
         const response = await axios.post(
-          `/api/expert/slotmaker/${id}`,
+          `${import.meta.env.VITE_BASE_URL}/expert/slotmaker/${id}`,
           formData,{
             headers: {
               authorization: user.token,
@@ -104,7 +104,7 @@ const Therapy = () => {
     const fetchExperts = async () => {
       try {
         if(user){
-        const response = await axios.get(`/api/therapy`);
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/therapy`);
         console.log(response.data.expertarray);
         setExpertArray(response.data.expertarray);
         setLoading(false);

@@ -38,7 +38,7 @@ const doctorDetail = () => {
     }
     const  fetchProfile=async ()=> {
       const response = await axios.get(
-        "/api/expert/expertprofile",
+        `${import.meta.env.VITE_BASE_URL}/expert/expertprofile`,
         {
           headers: {
             authorization:doctor.token,
@@ -56,7 +56,7 @@ const doctorDetail = () => {
 
   const acceptSlot = async (id) => {
     const data = await axios.post(
-     `/api/expert/acceptslot/${id}`,formData,
+     `${import.meta.env.VITE_BASE_URL}/expert/acceptslot/${id}`,formData,
      {
       headers: {
         authorization:doctor.token,
@@ -91,7 +91,7 @@ const doctorDetail = () => {
     }
     setLoading(true);
     const response = await axios.post(
-      `/api/expert/update/`,
+      `${import.meta.env.VITE_BASE_URL}/expert/update/`,
       {Name:Name,Charge:Charge},
       {
        headers: {
@@ -124,7 +124,7 @@ const doctorDetail = () => {
     console.log("Slot Rejected");
     console.log(id);
     const data = await axios.get(
-     `/api/expert/rejectslot/${id}`,
+     `${import.meta.env.VITE_BASE_URL}/expert/rejectslot/${id}`,
      {
       headers: {
         authorization:doctor.token,

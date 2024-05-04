@@ -39,7 +39,7 @@ const Products = () => {
   async function addToCartHandler(id) {
     try {
       const response = await axios.post(
-        "/api/products/addtocart",
+        `${import.meta.env.VITE_BASE_URL}/products/addtocart`,
 
         { userId:user._id , productId: id },
         {

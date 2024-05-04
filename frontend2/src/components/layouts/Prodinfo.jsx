@@ -75,7 +75,7 @@ const  Soldinfo = () => {
   const fetchData=async ()=>{
       setLoading(true);
       try {
-            const {data}=await axios.get('/api/admin/adminproductsmanage',
+            const {data}=await axios.get(`${import.meta.env.VITE_BASE_URL}/admin/adminproductsmanage`,
             {
               headers: {
                 Authorization: admin.token,
