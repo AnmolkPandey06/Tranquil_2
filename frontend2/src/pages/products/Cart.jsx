@@ -21,15 +21,14 @@ const Cart = () => {
   
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
-  console.log(user._id,user.token); 
+  console.log(user._id, user.token);
   console.log(cart);
   const dispatch = useDispatch();
   useEffect(() => {
-    
     async function getCartData1() {
-      await dispatch(fetchCartData(user._id,user.token));
+      await dispatch(fetchCartData(user._id, user.token));
 
-      // try { 
+      // try {
       //   // console.log(userid,token);
       //   const response = await axios.post("/api/products/getcart",{userId:user._id},{
       //     headers: {
@@ -53,9 +52,9 @@ const Cart = () => {
         { userId: user._id, productId: id },
         {
           headers: {
-              authorization: user.token
-          }
-      }
+            authorization: user.token,
+          },
+        }
       );
       if (response.status == 200) {
         console.log(response.data);
@@ -63,7 +62,7 @@ const Cart = () => {
           autoClose: 2000,
         });
         // dispatch(removeFromCart(id));
-        await dispatch(fetchCartData(user._id,user.token));
+        await dispatch(fetchCartData(user._id, user.token));
       }
     } catch (e) {
       console.log(e);
@@ -77,16 +76,16 @@ const Cart = () => {
         { userId: user._id, productId: id },
         {
           headers: {
-              authorization: user.token
-          }
-      }
+            authorization: user.token,
+          },
+        }
       );
       if (response.status == 200) {
         console.log(response.data);
         toast.success("Quantity increased!", {
           autoClose: 2000,
         });
-        await dispatch(fetchCartData(user._id,user.token));
+        await dispatch(fetchCartData(user._id, user.token));
       }
     } catch (e) {
       console.log(e);
@@ -100,16 +99,16 @@ const Cart = () => {
         { userId: user._id, productId: id },
         {
           headers: {
-              authorization: user.token
-          }
-      }
+            authorization: user.token,
+          },
+        }
       );
       if (response.status == 200) {
         console.log(response.data);
         toast.success("Quantity decreased!", {
           autoClose: 2000,
         });
-        await dispatch(fetchCartData(user._id,user.token));
+        await dispatch(fetchCartData(user._id, user.token));
       }
     } catch (e) {
       console.log(e);
@@ -129,10 +128,12 @@ const Cart = () => {
       );
       if (response.status == 200) {
         // console.log(response.data);
-        toast.success("Order placed successfully!",{
-          autoClose: 2000 
+        // toast.success("Order placed successfully!", {
+        //   autoClose: 2000,
+        // });
+        navigate("/buyproducts", {
+          state: { bought: response.data.bought, use: response.data.use },
         });
-        navigate("/buyproducts",{state:{bought:response.data.bought,use:response.data.use}});
       }
     } catch (e) {
       console.log(e);

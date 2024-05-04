@@ -18,6 +18,7 @@ const user=require('../Models/user');
 const sold=require('../Models/solddetails');
 
 const control = require('../Controllers/productcontroller');
+const control2 = require('../Controllers/paymentController.js');
 
 
 const { protect } = require("../Middlewares/authMiddleware");
@@ -40,6 +41,7 @@ router.post('/getcart',protect,catchAsync(control.getCart))
 router.post('/addtocart',protect,catchAsync(control.addtocart));
 router.post('/deletefromcart',protect,catchAsync(control.deletefromcart));
 router.post('/increasequantity',protect,catchAsync(control.increasequantity));
-router.post('/decreasequantity',protect,catchAsync(control.decreasequantity));
+router.post('/decreasequantity',protect,catchAsync(control.decreasequantity));                     
+router.post('/create-order',catchAsync(control2.payment));                     
 
 module.exports=router;
